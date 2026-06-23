@@ -36,61 +36,6 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// ── STAT CARDS: slide + counter animation ──
-const statCards = document.querySelectorAll('.stat-card');
-
-const statObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      animateStatNumber(entry.target);
-      statObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.3 });
-
-statCards.forEach(el => statObserver.observe(el));
-
-/**
- * Animates the stat number from 0 to the target value.
- * Uses data-count and data-suffix from the card to preserve the <span> styling.
- */
-function animateStatNumber(card) {
-  const numEl = card.querySelector('.stat-num');
-  if (!numEl) return;
-
-  const target = parseInt(card.dataset.count, 10);
-  const suffix = card.dataset.suffix || '';
-  if (isNaN(target)) return;
-  if (target === 0) return;
-
-  // Skip animation if user prefers reduced motion
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    numEl.innerHTML = target + '<span>' + suffix + '</span>';
-    return;
-  }
-
-  const duration = 1200;
-  const start = performance.now();
-
-  function tick(now) {
-    const elapsed = now - start;
-    const progress = Math.min(elapsed / duration, 1);
-    // Ease out cubic for natural deceleration
-    const eased = 1 - Math.pow(1 - progress, 3);
-    const current = Math.round(eased * target);
-
-    // Preserve the <span> wrapper for accent color on suffix
-    numEl.innerHTML = current + '<span>' + suffix + '</span>';
-
-    if (progress < 1) {
-      requestAnimationFrame(tick);
-    }
-  }
-
-  requestAnimationFrame(tick);
-}
-
 // ── CHIPS ──
 document.querySelectorAll('#chips .chip').forEach(c =>
   c.addEventListener('click', () => c.classList.toggle('active'))
@@ -130,9 +75,8 @@ function handleSubmit() {
 
   const hero = document.querySelector('.hero');
   const heroLeft = document.querySelector('.hero-left');
-  const heroRight = document.querySelector('.hero-right');
 
-  if (!hero || !heroLeft || !heroRight) return;
+  if (!hero || !heroLeft) return;
 
   let ticking = false;
 
@@ -149,11 +93,10 @@ function handleSubmit() {
 
     // Map scroll position to a factor from 0 (top of hero at top of viewport) to 1 (bottom at bottom)
     const factor = Math.max(0, Math.min(1, -heroTop / (heroHeight - window.innerHeight)));
-    // Subtle displacement: max 20px
-    const offset = factor * 20;
+    // Subtle displacement: max 16px
+    const offset = factor * 16;
 
-    heroLeft.style.transform = `translateY(${offset * 0.3}px)`;
-    heroRight.style.transform = `translateY(${offset * 0.6}px)`;
+    heroLeft.style.transform = `translateY(${offset}px)`;
 
     ticking = false;
   }
