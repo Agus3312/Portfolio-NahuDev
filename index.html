@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NahuDev — Agus</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Nahu<span>Dev</span></div>
+  <div class="nav-links">
+    <a href="#servicios">Servicios</a>
+    <a href="#proyectos">Proyectos</a>
+    <a href="#solicitar" class="nav-cta">Hablemos</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">
+      <span class="dot"></span>
+      Disponible para proyectos
+    </div>
+    <h1>Soy Agus.<br>Hago que tu negocio funcione mejor<span class="cursor"></span></h1>
+    <p class="hero-sub">Webs, chatbots y automatizaciones. Sin palabras raras, sin vueltas. Te explico todo en criollo y entrego lo que prometí.</p>
+    <div class="hero-actions">
+      <a href="#solicitar" class="btn-primary">Contame tu idea</a>
+      <a href="#servicios" class="btn-ghost">Ver servicios</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="stat-card">
+      <div class="stat-num">100<span>%</span></div>
+      <div class="stat-label">Proyectos entregados en tiempo y forma</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">24<span>hs</span></div>
+      <div class="stat-label">Tiempo máximo de respuesta a tu consulta</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">0<span> $</span></div>
+      <div class="stat-label">Costo de la primera consulta. Sin compromiso.</div>
+    </div>
+  </div>
+</div>
+
+<hr />
+
+<!-- SERVICIOS -->
+<section class="section" id="servicios">
+  <div class="section-eyebrow reveal">Lo que hago</div>
+  <div class="section-title reveal reveal-d1">Servicios para negocios que quieren crecer</div>
+  <div class="services-grid">
+    <div class="svc reveal reveal-d1">
+      <div class="svc-icon">🌐</div>
+      <h3>Desarrollo Web</h3>
+      <p>Sitios modernos y rápidos. Desde una landing hasta una web completa con todo lo que necesitás.</p>
+    </div>
+    <div class="svc reveal reveal-d2">
+      <div class="svc-icon">🤖</div>
+      <h3>Chatbots</h3>
+      <p>Respondé consultas las 24hs sin estar pendiente del celular. Integrado a tu web o WhatsApp.</p>
+    </div>
+    <div class="svc reveal reveal-d3">
+      <div class="svc-icon">⚙️</div>
+      <h3>Automatización</h3>
+      <p>Las tareas que hacés a mano todos los días se pueden automatizar. Te muestro cómo.</p>
+    </div>
+    <div class="svc reveal reveal-d4">
+      <div class="svc-icon">📊</div>
+      <h3>Dashboards</h3>
+      <p>Tus datos de ventas y clientes en un panel visual, claro y siempre actualizado.</p>
+    </div>
+    <div class="svc reveal reveal-d5">
+      <div class="svc-icon">📅</div>
+      <h3>Turnos Online</h3>
+      <p>Tus clientes reservan solos. Vos solo atendés. Sin llamadas, sin papeles, sin líos.</p>
+    </div>
+    <div class="svc reveal reveal-d6">
+      <div class="svc-icon">🔍</div>
+      <h3>SEO & Google</h3>
+      <p>Para que te encuentren cuando busquen lo que hacés. Google Maps, My Business y más.</p>
+    </div>
+  </div>
+</section>
+
+<hr />
+
+<!-- FORM -->
+<div id="solicitar">
+  <div class="form-inner">
+    <div class="form-intro reveal">
+      <div class="section-eyebrow">Contacto</div>
+      <div class="section-title">Contame qué necesitás</div>
+      <p>No hace falta que tengas todo claro. Con una idea alcanza. Yo te hago las preguntas que faltan y te cuento qué se puede hacer y cuánto sale.</p>
+      <div class="form-perks">
+        <div class="perk"><div class="perk-icon">✉️</div>Te respondo en menos de 24hs</div>
+        <div class="perk"><div class="perk-icon">💬</div>Primera consulta sin costo</div>
+        <div class="perk"><div class="perk-icon">🔒</div>Tus datos no se comparten con nadie</div>
+      </div>
+    </div>
+    <div class="form-box reveal reveal-d2">
+      <div id="form-content">
+        <div class="field">
+          <label>Nombre y apellido</label>
+          <input type="text" id="nombre" placeholder="Juan Pérez" />
+        </div>
+        <div class="field">
+          <label>Teléfono</label>
+          <input type="tel" id="telefono" placeholder="+54 9 11 1234-5678" />
+        </div>
+        <div class="field">
+          <label>Email</label>
+          <input type="email" id="email" placeholder="juan@ejemplo.com" />
+        </div>
+        <div class="field">
+          <label>¿Qué te interesa? <span style="font-weight:400;text-transform:none;letter-spacing:0">(opcional)</span></label>
+          <div class="chips" id="chips">
+            <div class="chip" data-value="web">Sitio web</div>
+            <div class="chip" data-value="landing">Landing page</div>
+            <div class="chip" data-value="chatbot">Chatbot</div>
+            <div class="chip" data-value="automatizacion">Automatización</div>
+            <div class="chip" data-value="dashboard">Dashboard</div>
+            <div class="chip" data-value="reservas">Turnos online</div>
+            <div class="chip" data-value="seo">SEO / Google</div>
+            <div class="chip" data-value="nosé">No sé todavía</div>
+          </div>
+        </div>
+        <div class="field" style="margin-top:16px">
+          <label>Algo más que quieras contarme <span style="font-weight:400;text-transform:none;letter-spacing:0">(opcional)</span></label>
+          <textarea id="mensaje" placeholder="Cualquier detalle ayuda. ¿Qué hace tu negocio? ¿Qué problema tenés?"></textarea>
+        </div>
+        <div class="consent">
+          <input type="checkbox" id="consent" />
+          <span>Acepto que mis datos se guarden para recibir una respuesta. <a href="#">Política de privacidad</a>.</span>
+        </div>
+        <button class="submit-btn" id="submit-btn" onclick="handleSubmit()">Mandar consulta</button>
+      </div>
+      <div class="success-msg" id="success-msg">
+        <div class="check">✅</div>
+        <h3>¡Listo, lo recibí!</h3>
+        <p>Gracias por escribirme. Te respondo a la brevedad para hablar de tu proyecto en detalle.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr />
+
+<!-- PROYECTOS -->
+<section class="section" id="proyectos">
+  <div class="section-eyebrow reveal">Proyectos</div>
+  <div class="section-title reveal reveal-d1">Lo que ya construí</div>
+  <div class="projects-grid">
+
+    <a href="https://aramburu-base-de-datos.vercel.app/" target="_blank" class="project-card reveal reveal-d1">
+      <div class="project-banner" style="background: linear-gradient(135deg, #0F172A, #1E3A5F);">
+        <span>🍽️</span>
+        <div class="project-banner-label">Destacado</div>
+      </div>
+      <div class="project-body">
+        <h3>Aramburu — Sistema de Gestión</h3>
+        <p>Panel completo para restaurante con 6 roles, mesas en tiempo real, cocina, caja y reportes.</p>
+        <div class="project-tags">
+          <span class="project-tag">Dashboard</span>
+          <span class="project-tag">Roles</span>
+          <span class="project-tag">Tiempo real</span>
+        </div>
+        <div class="project-arrow">Ver proyecto →</div>
+      </div>
+    </a>
+
+    <a href="https://agencia-app-khaki.vercel.app/pages/login.html" target="_blank" class="project-card reveal reveal-d2">
+      <div class="project-banner" style="background: linear-gradient(135deg, #1A1A2E, #16213E);">
+        <span>🏢</span>
+      </div>
+      <div class="project-body">
+        <h3>Agencia App — Gestión de Equipo</h3>
+        <p>Panel interno para administrar proyectos, estados y equipo de una agencia digital.</p>
+        <div class="project-tags">
+          <span class="project-tag">Gestión</span>
+          <span class="project-tag">Proyectos</span>
+          <span class="project-tag">Equipo</span>
+        </div>
+        <div class="project-arrow">Ver proyecto →</div>
+      </div>
+    </a>
+
+    <a href="https://auto-clientes2.vercel.app/" target="_blank" class="project-card reveal reveal-d3">
+      <div class="project-banner" style="background: linear-gradient(135deg, #064E3B, #065F46);">
+        <span>📍</span>
+      </div>
+      <div class="project-body">
+        <h3>AutoClientes — Buscador de Leads</h3>
+        <p>Usa la API de Google Maps para encontrar clientes potenciales por rubro y zona automáticamente.</p>
+        <div class="project-tags">
+          <span class="project-tag">Google Maps API</span>
+          <span class="project-tag">Prospección</span>
+          <span class="project-tag">Automatización</span>
+        </div>
+        <div class="project-arrow">Ver proyecto →</div>
+      </div>
+    </a>
+
+    <a href="https://mini-fletes.vercel.app/" target="_blank" class="project-card reveal reveal-d4">
+      <div class="project-banner" style="background: linear-gradient(135deg, #1E1B4B, #312E81);">
+        <span>📷</span>
+      </div>
+      <div class="project-body">
+        <h3>Cámaras de Seguridad — Web Completa</h3>
+        <p>Sitio con catálogo de productos, kits por necesidad, simulador de instalación y contacto.</p>
+        <div class="project-tags">
+          <span class="project-tag">Web completa</span>
+          <span class="project-tag">Catálogo</span>
+          <span class="project-tag">Simulador</span>
+        </div>
+        <div class="project-arrow">Ver proyecto →</div>
+      </div>
+    </a>
+
+    <a href="https://casa-de-motos-npbx.vercel.app/" target="_blank" class="project-card reveal reveal-d5">
+      <div class="project-banner" style="background: linear-gradient(135deg, #7C2D12, #9A3412);">
+        <span>🏍️</span>
+      </div>
+      <div class="project-body">
+        <h3>LV Motos — Web para Comercio</h3>
+        <p>Sitio con catálogo de repuestos, integración WhatsApp y Google Maps para un local de motos.</p>
+        <div class="project-tags">
+          <span class="project-tag">Comercio</span>
+          <span class="project-tag">WhatsApp</span>
+          <span class="project-tag">Catálogo</span>
+        </div>
+        <div class="project-arrow">Ver proyecto →</div>
+      </div>
+    </a>
+
+    <a href="https://ferreteria-argentina.vercel.app/" target="_blank" class="project-card reveal reveal-d6">
+      <div class="project-banner" style="background: linear-gradient(135deg, #713F12, #854D0E);">
+        <span>🔧</span>
+      </div>
+      <div class="project-body">
+        <h3>Ferretería Argentina — Web de Producto</h3>
+        <p>Web para ferretería local con catálogo de productos, secciones por categoría y contacto.</p>
+        <div class="project-tags">
+          <span class="project-tag">Web</span>
+          <span class="project-tag">Catálogo</span>
+          <span class="project-tag">Local</span>
+        </div>
+        <div class="project-arrow">Ver proyecto →</div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div style="border-top: 1px solid var(--border)">
+  <footer>
+    <span>© 2026 NahuDev · Agus · Argentina 🇦🇷</span>
+    <a href="#">Política de privacidad</a>
+  </footer>
+</div>
+
+<script src="index.js"></script>
+</body>
+</html>

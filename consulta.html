@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contame tu proyecto — NahuDev</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="consulta.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo">Nahu<span>Dev</span></a>
+  <a href="index.html" class="nav-back">← Volver al inicio</a>
+</nav>
+
+<!-- PROGRESS -->
+<div class="progress-wrap">
+  <div class="progress-bar" id="progress-bar"></div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- FORM STEPS -->
+  <div id="form-steps">
+
+    <!-- STEP 1: Qué necesitás -->
+    <div class="step active" data-step="1">
+      <div class="step-header">
+        <div class="step-count">Paso 1 de 5</div>
+        <div class="step-title">¿Qué necesitás?</div>
+        <div class="step-sub">Elegí el servicio que más se acerca a lo que tenés en mente. Si no estás seguro, no pasa nada.</div>
+      </div>
+      <div class="options" id="service-options">
+
+        <div class="option accordion-option" onclick="selectAccordion(this, 'service')" data-value="web">
+          <div class="option-main">
+            <div class="option-icon">🌐</div>
+            <div class="option-text"><h4>Sitio web completo</h4><p>Página con múltiples secciones para tu negocio</p></div>
+            <div class="option-check"></div>
+          </div>
+          <div class="accordion-body">
+            <p>Un sitio web completo incluye: página de inicio, sección de servicios o productos, información del negocio, formulario de contacto y mapa. Ideal para negocios que quieren tener presencia profesional en internet.</p>
+            <div class="accordion-example">
+              <span>Ejemplo real:</span>
+              <a href="https://ferreteria-argentina.vercel.app/" target="_blank" onclick="event.stopPropagation()">Ferretería Argentina →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="option accordion-option" onclick="selectAccordion(this, 'service')" data-value="landing">
+          <div class="option-main">
+            <div class="option-icon">🎯</div>
+            <div class="option-text"><h4>Landing page</h4><p>Una página puntual para captar clientes o promocionar algo</p></div>
+            <div class="option-check"></div>
+          </div>
+          <div class="accordion-body">
+            <p>Una landing page es una sola página diseñada para un objetivo concreto: que el visitante te llame, te escriba o compre. Sin distracciones. Perfecta para promociones, lanzamientos o servicios específicos.</p>
+            <div class="accordion-example">
+              <span>Ideal para:</span>
+              <span style="color:var(--muted)">Médicos, abogados, consultores, eventos</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="option accordion-option" onclick="selectAccordion(this, 'service')" data-value="chatbot">
+          <div class="option-main">
+            <div class="option-icon">🤖</div>
+            <div class="option-text"><h4>Chatbot</h4><p>Atención automática para tus clientes las 24hs</p></div>
+            <div class="option-check"></div>
+          </div>
+          <div class="accordion-body">
+            <p>Un chatbot responde preguntas frecuentes automáticamente sin que vos tengas que estar pendiente. Se puede integrar en tu web o en WhatsApp. Ideal para negocios con muchas consultas repetidas.</p>
+            <div class="accordion-example">
+              <span>Ideal para:</span>
+              <span style="color:var(--muted)">Clínicas, inmobiliarias, tiendas online</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="option accordion-option" onclick="selectAccordion(this, 'service')" data-value="automatizacion">
+          <div class="option-main">
+            <div class="option-icon">⚙️</div>
+            <div class="option-text"><h4>Automatización</h4><p>Eliminar tareas manuales y repetitivas en tu negocio</p></div>
+            <div class="option-check"></div>
+          </div>
+          <div class="accordion-body">
+            <p>¿Cargás datos a mano todos los días? ¿Mandás los mismos mensajes una y otra vez? Eso se puede automatizar. Ahorrás horas de trabajo y evitás errores humanos.</p>
+            <div class="accordion-example">
+              <span>Ejemplo real:</span>
+              <a href="https://auto-clientes2.vercel.app/" target="_blank" onclick="event.stopPropagation()">AutoClientes — buscador automático de leads →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="option accordion-option" onclick="selectAccordion(this, 'service')" data-value="dashboard">
+          <div class="option-main">
+            <div class="option-icon">📊</div>
+            <div class="option-text"><h4>Dashboard / reportes</h4><p>Panel para visualizar datos de tu negocio</p></div>
+            <div class="option-check"></div>
+          </div>
+          <div class="accordion-body">
+            <p>Un dashboard te muestra en tiempo real lo que pasa en tu negocio: ventas, clientes, stock, pedidos. En vez de revisar planillas de Excel, todo está en un panel visual y claro.</p>
+            <div class="accordion-example">
+              <span>Ejemplo real:</span>
+              <a href="https://aramburu-base-de-datos.vercel.app/" target="_blank" onclick="event.stopPropagation()">Aramburu — sistema de gestión para restaurante →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="option accordion-option" onclick="selectAccordion(this, 'service')" data-value="reservas">
+          <div class="option-main">
+            <div class="option-icon">📅</div>
+            <div class="option-text"><h4>Sistema de turnos</h4><p>Reservas y agendamiento online para tus clientes</p></div>
+            <div class="option-check"></div>
+          </div>
+          <div class="accordion-body">
+            <p>Tus clientes eligen el día y horario desde la web, sin tener que llamarte. Vos recibís la reserva automáticamente y podés ver tu agenda desde cualquier lado.</p>
+            <div class="accordion-example">
+              <span>Ideal para:</span>
+              <span style="color:var(--muted)">Peluquerías, médicos, psicólogos, entrenadores</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="option accordion-option" onclick="selectAccordion(this, 'service')" data-value="nosé">
+          <div class="option-main">
+            <div class="option-icon">🤔</div>
+            <div class="option-text"><h4>No sé todavía</h4><p>Tengo una idea pero no sé bien qué necesito</p></div>
+            <div class="option-check"></div>
+          </div>
+          <div class="accordion-body">
+            <p>No hace falta saber qué querés antes de hablar. Contame el problema que tenés en tu negocio y juntos encontramos la mejor solución. La primera consulta es gratis y sin compromiso.</p>
+          </div>
+        </div>
+
+      </div>
+      <div class="btn-row">
+        <button class="btn-primary" onclick="nextStep()" id="btn-step1">Continuar →</button>
+      </div>
+    </div>
+
+    <!-- STEP 2: Contame el negocio -->
+    <div class="step" data-step="2">
+      <div class="step-header">
+        <div class="step-count">Paso 2 de 5</div>
+        <div class="step-title">Contame tu negocio</div>
+        <div class="step-sub">Cuanto más sepa, mejor puedo ayudarte.</div>
+      </div>
+      <div class="field">
+        <label>¿A qué se dedica tu negocio?</label>
+        <input type="text" id="rubro" placeholder="Ej: clínica dental, inmobiliaria, gym..." />
+      </div>
+      <div class="field">
+        <label>¿Tenés web o presencia digital actualmente?</label>
+      </div>
+      <div class="options" id="presencia-options" style="margin-bottom:20px">
+        <div class="option" onclick="selectOption(this, 'presencia')" data-value="no">
+          <div class="option-icon">❌</div>
+          <div class="option-text"><h4>No tengo nada</h4><p>Arrancamos de cero</p></div>
+          <div class="option-check"></div>
+        </div>
+        <div class="option" onclick="selectOption(this, 'presencia')" data-value="redes">
+          <div class="option-icon">📱</div>
+          <div class="option-text"><h4>Solo redes sociales</h4><p>Instagram, Facebook, etc.</p></div>
+          <div class="option-check"></div>
+        </div>
+        <div class="option" onclick="selectOption(this, 'presencia')" data-value="web-vieja">
+          <div class="option-icon">🕸️</div>
+          <div class="option-text"><h4>Tengo web pero está desactualizada</h4><p>Necesito renovarla</p></div>
+          <div class="option-check"></div>
+        </div>
+        <div class="option" onclick="selectOption(this, 'presencia')" data-value="web-ok">
+          <div class="option-icon">✅</div>
+          <div class="option-text"><h4>Tengo web y funciona bien</h4><p>Quiero agregar algo nuevo</p></div>
+          <div class="option-check"></div>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn-ghost" onclick="prevStep()">← Atrás</button>
+        <button class="btn-primary" onclick="nextStep()">Continuar →</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: Objetivos -->
+    <div class="step" data-step="3">
+      <div class="step-header">
+        <div class="step-count">Paso 3 de 5</div>
+        <div class="step-title">¿Qué querés lograr?</div>
+        <div class="step-sub">Podés elegir más de uno.</div>
+      </div>
+      <div class="chip-group" id="objetivo-chips">
+        <div class="chip" onclick="toggleChip(this)" data-value="mas-clientes">Conseguir más clientes</div>
+        <div class="chip" onclick="toggleChip(this)" data-value="imagen">Mejorar la imagen del negocio</div>
+        <div class="chip" onclick="toggleChip(this)" data-value="ahorrar-tiempo">Ahorrar tiempo en tareas</div>
+        <div class="chip" onclick="toggleChip(this)" data-value="automatizar">Automatizar procesos</div>
+        <div class="chip" onclick="toggleChip(this)" data-value="vender-online">Vender online</div>
+        <div class="chip" onclick="toggleChip(this)" data-value="turnos">Gestionar turnos</div>
+        <div class="chip" onclick="toggleChip(this)" data-value="google">Aparecer en Google</div>
+        <div class="chip" onclick="toggleChip(this)" data-value="otro">Otro</div>
+      </div>
+
+      <div class="field">
+        <label>¿Algo más que quieras contarme del proyecto? <span style="font-weight:400;text-transform:none;letter-spacing:0">(opcional)</span></label>
+        <textarea id="detalle" placeholder="Cualquier detalle ayuda. Ideas, referencias, problemas actuales..."></textarea>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-ghost" onclick="prevStep()">← Atrás</button>
+        <button class="btn-primary" onclick="nextStep()">Continuar →</button>
+      </div>
+    </div>
+
+    <!-- STEP 4: Presupuesto y urgencia -->
+    <div class="step" data-step="4">
+      <div class="step-header">
+        <div class="step-count">Paso 4 de 5</div>
+        <div class="step-title">Presupuesto y tiempos</div>
+        <div class="step-sub">Sin compromiso, es solo para orientarme.</div>
+      </div>
+
+      <div style="background:white; border:1px solid var(--border); border-radius:12px; padding:20px 24px; margin-bottom:20px;">
+        <div class="step-sub" style="margin-bottom:12px; font-size:0.82rem;">¿Cuánto tenés pensado invertir?</div>
+        <div class="budget-display">$<span id="budget-val">150.000</span></div>
+        <input type="range" id="budget-range" min="0" max="8" value="2" oninput="updateBudget(this.value)" />
+        <div class="budget-labels">
+          <span>$50k</span>
+          <span>$500k+</span>
+        </div>
+      </div>
+
+      <div class="step-sub" style="margin-bottom:12px;">¿Con qué urgencia lo necesitás?</div>
+      <div class="urgency-grid" id="urgency-grid">
+        <div class="urgency-card" onclick="selectUrgency(this)" data-value="flexible">
+          <div class="urg-icon">😌</div>
+          <h4>Sin apuro</h4>
+          <p>Cuando pueda</p>
+        </div>
+        <div class="urgency-card" onclick="selectUrgency(this)" data-value="1mes">
+          <div class="urg-icon">📆</div>
+          <h4>En el próximo mes</h4>
+          <p>Más o menos</p>
+        </div>
+        <div class="urgency-card" onclick="selectUrgency(this)" data-value="2semanas">
+          <div class="urg-icon">⚡</div>
+          <h4>En 2 semanas</h4>
+          <p>Bastante urgente</p>
+        </div>
+        <div class="urgency-card" onclick="selectUrgency(this)" data-value="ya">
+          <div class="urg-icon">🔥</div>
+          <h4>Lo antes posible</h4>
+          <p>Es urgente</p>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-ghost" onclick="prevStep()">← Atrás</button>
+        <button class="btn-primary" onclick="nextStep()">Continuar →</button>
+      </div>
+    </div>
+
+    <!-- STEP 5: Datos de contacto -->
+    <div class="step" data-step="5">
+      <div class="step-header">
+        <div class="step-count">Paso 5 de 5</div>
+        <div class="step-title">¿Cómo te contacto?</div>
+        <div class="step-sub">Revisá que todo esté bien, te respondo en menos de 24hs.</div>
+      </div>
+
+      <!-- resumen -->
+      <div class="summary-card" id="summary-card"></div>
+
+      <div class="field">
+        <label>Nombre y apellido</label>
+        <input type="text" id="nombre" placeholder="Juan Pérez" />
+      </div>
+      <div class="field">
+        <label>Teléfono (WhatsApp si tenés)</label>
+        <input type="tel" id="telefono" placeholder="+54 9 11 1234-5678" />
+      </div>
+      <div class="field">
+        <label>Email</label>
+        <input type="email" id="email" placeholder="juan@ejemplo.com" />
+      </div>
+
+      <div class="consent">
+        <input type="checkbox" id="consent" />
+        <span>Acepto que mis datos se guarden para recibir una respuesta. <a href="#">Política de privacidad</a>.</span>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-ghost" onclick="prevStep()">← Atrás</button>
+        <button class="btn-primary" onclick="submitForm()" id="btn-submit">Enviar consulta ✓</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="success-screen" id="success-screen">
+    <div class="success-icon">🎉</div>
+    <h2>¡Lo recibí!</h2>
+    <p>Gracias por tomarte el tiempo de completar esto. Me ayuda un montón para entender bien lo que necesitás antes de hablar.</p>
+    <div class="success-detail">
+      Te respondo en menos de 24hs al teléfono o email que dejaste. ¡Hablamos pronto!
+    </div>
+  </div>
+
+</div>
+
+<script src="consulta.js"></script>
+</body>
+</html>
