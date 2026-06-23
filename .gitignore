@@ -4,6 +4,5 @@ Thumbs.db
 .vscode/
 .idea/
 node_modules/
+.env
 screenshot.js
-package.json
-package-lock.json

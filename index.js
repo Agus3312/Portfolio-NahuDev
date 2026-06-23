@@ -57,15 +57,36 @@ function handleSubmit() {
     return;
   }
 
-  const btn = document.getElementById('submit-btn');
+  // Gather selected chips
+  const chips = Array.from(document.querySelectorAll('#chips .chip.active'))
+    .map(function (c) { return c.dataset.value; });
+
+  const mensaje = document.getElementById('mensaje').value.trim();
+
+  var btn = document.getElementById('submit-btn');
+  var originalText = btn.textContent;
   btn.disabled = true;
   btn.textContent = 'Enviando...';
 
-  // Aqu\u00ed ir\u00eda el fetch al backend
-  setTimeout(() => {
-    document.getElementById('form-content').style.display = 'none';
-    document.getElementById('success-msg').style.display = 'block';
-  }, 1000);
+  fetch('/api/contact', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ nombre: nombre, telefono: tel, email: email, chips: chips, mensaje: mensaje }),
+  })
+    .then(function (res) {
+      if (!res.ok) return res.json().then(function (err) { throw err; });
+      return res.json();
+    })
+    .then(function () {
+      document.getElementById('form-content').style.display = 'none';
+      document.getElementById('success-msg').style.display = 'block';
+    })
+    .catch(function (err) {
+      console.error('Error al enviar:', err);
+      alert(err && err.error ? err.error : 'Hubo un error al enviar. Intent\u00e1 de nuevo en unos minutos.');
+      btn.disabled = false;
+      btn.textContent = originalText;
+    });
 }
 
 // ── PARALLAX EFFECT ON HERO (subtle) ──

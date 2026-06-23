@@ -148,17 +148,39 @@ function submitForm() {
     return;
   }
 
-  const btn = document.getElementById('btn-submit');
+  // Collect all multi-step form data
+  state.nombre = nombre;
+  state.telefono = tel;
+  state.email = email;
+  state.rubro = document.getElementById('rubro').value.trim();
+  state.detalle = document.getElementById('detalle').value.trim();
+
+  var btn = document.getElementById('btn-submit');
+  var originalText = btn.textContent;
   btn.disabled = true;
   btn.textContent = 'Enviando...';
 
-  // Ac\u00e1 ir\u00eda el fetch al backend
-  setTimeout(() => {
-    document.getElementById('form-steps').style.display = 'none';
-    document.getElementById('success-screen').classList.add('show');
-    document.getElementById('progress-bar').style.width = '100%';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, 1000);
+  fetch('/api/contact', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(state),
+  })
+    .then(function (res) {
+      if (!res.ok) return res.json().then(function (err) { throw err; });
+      return res.json();
+    })
+    .then(function () {
+      document.getElementById('form-steps').style.display = 'none';
+      document.getElementById('success-screen').classList.add('show');
+      document.getElementById('progress-bar').style.width = '100%';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    })
+    .catch(function (err) {
+      console.error('Error al enviar:', err);
+      alert(err && err.error ? err.error : 'Hubo un error al enviar. Intent\u00e1 de nuevo en unos minutos.');
+      btn.disabled = false;
+      btn.textContent = originalText;
+    });
 }
 
 // Shake keyframe
