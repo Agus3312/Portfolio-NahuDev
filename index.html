@@ -1,32 +1,49 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NahuDev — Agus</title>
+
+  <!-- Preload critical fonts for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500&display=swap" />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="index.css" />
 </head>
 <body>
 
-<!-- NAV -->
+<!-- ═══════════════ NAV ═══════════════ -->
 <nav>
   <div class="logo">Nahu<span>Dev</span></div>
   <div class="nav-links">
     <a href="#servicios">Servicios</a>
     <a href="#proyectos">Proyectos</a>
     <a href="#solicitar" class="nav-cta">Hablemos</a>
+    <button class="theme-toggle" aria-label="Cambiar modo oscuro / claro" title="Modo oscuro">
+      <!-- Sun icon (visible in light mode) -->
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="5"/>
+        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+      </svg>
+      <!-- Moon icon (visible in dark mode) -->
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+      </svg>
+    </button>
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- ═══════════════ HERO ═══════════════ -->
 <div class="hero">
   <div class="hero-left">
     <div class="hero-tag">
       <span class="dot"></span>
       Disponible para proyectos
     </div>
-    <h1>Soy Agus.<br>Hago que tu negocio funcione mejor<span class="cursor"></span></h1>
+    <h1><span class="gradient-text">Soy Agus.</span><br>Hago que tu negocio funcione mejor<span class="cursor"></span></h1>
     <p class="hero-sub">Webs, chatbots y automatizaciones. Sin palabras raras, sin vueltas. Te explico todo en criollo y entrego lo que prometí.</p>
     <div class="hero-actions">
       <a href="#solicitar" class="btn-primary">Contame tu idea</a>
@@ -34,72 +51,117 @@
     </div>
   </div>
   <div class="hero-right">
-    <div class="stat-card">
+    <div class="stat-card" data-count="100" data-suffix="%">
       <div class="stat-num">100<span>%</span></div>
       <div class="stat-label">Proyectos entregados en tiempo y forma</div>
     </div>
-    <div class="stat-card">
+    <div class="stat-card" data-count="24" data-suffix="hs">
       <div class="stat-num">24<span>hs</span></div>
       <div class="stat-label">Tiempo máximo de respuesta a tu consulta</div>
     </div>
-    <div class="stat-card">
+    <div class="stat-card" data-count="0" data-suffix=" $">
       <div class="stat-num">0<span> $</span></div>
       <div class="stat-label">Costo de la primera consulta. Sin compromiso.</div>
     </div>
   </div>
 </div>
 
-<hr />
+<!-- Gradient divider -->
+<div class="divider"></div>
 
-<!-- SERVICIOS -->
+<!-- ═══════════════ SERVICIOS ═══════════════ -->
 <section class="section" id="servicios">
   <div class="section-eyebrow reveal">Lo que hago</div>
   <div class="section-title reveal reveal-d1">Servicios para negocios que quieren crecer</div>
   <div class="services-grid">
+
     <div class="svc reveal reveal-d1">
-      <div class="svc-icon">🌐</div>
+      <div class="svc-icon">
+        <!-- Globe icon: Desarrollo Web -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+        </svg>
+      </div>
       <h3>Desarrollo Web</h3>
       <p>Sitios modernos y rápidos. Desde una landing hasta una web completa con todo lo que necesitás.</p>
     </div>
+
     <div class="svc reveal reveal-d2">
-      <div class="svc-icon">🤖</div>
+      <div class="svc-icon">
+        <!-- Bot icon: Chatbots -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="3"/>
+          <circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/>
+          <path d="M9 16h6M12 3v-1"/>
+        </svg>
+      </div>
       <h3>Chatbots</h3>
       <p>Respondé consultas las 24hs sin estar pendiente del celular. Integrado a tu web o WhatsApp.</p>
     </div>
+
     <div class="svc reveal reveal-d3">
-      <div class="svc-icon">⚙️</div>
+      <div class="svc-icon">
+        <!-- Cog icon: Automatización -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/>
+        </svg>
+      </div>
       <h3>Automatización</h3>
       <p>Las tareas que hacés a mano todos los días se pueden automatizar. Te muestro cómo.</p>
     </div>
+
     <div class="svc reveal reveal-d4">
-      <div class="svc-icon">📊</div>
+      <div class="svc-icon">
+        <!-- BarChart icon: Dashboards -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 20V10M12 20V4M6 20v-6"/>
+        </svg>
+      </div>
       <h3>Dashboards</h3>
       <p>Tus datos de ventas y clientes en un panel visual, claro y siempre actualizado.</p>
     </div>
+
     <div class="svc reveal reveal-d5">
-      <div class="svc-icon">📅</div>
+      <div class="svc-icon">
+        <!-- Calendar icon: Turnos Online -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+          <path d="M16 2v4M8 2v4M3 10h18"/>
+        </svg>
+      </div>
       <h3>Turnos Online</h3>
       <p>Tus clientes reservan solos. Vos solo atendés. Sin llamadas, sin papeles, sin líos.</p>
     </div>
+
     <div class="svc reveal reveal-d6">
-      <div class="svc-icon">🔍</div>
+      <div class="svc-icon">
+        <!-- Search icon: SEO & Google -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/>
+          <path d="M21 21l-4.35-4.35"/>
+        </svg>
+      </div>
       <h3>SEO & Google</h3>
       <p>Para que te encuentren cuando busquen lo que hacés. Google Maps, My Business y más.</p>
     </div>
+
   </div>
 </section>
 
-<hr />
+<!-- Gradient divider -->
+<div class="divider"></div>
 
-<!-- PROYECTOS -->
+<!-- ═══════════════ PROYECTOS ═══════════════ -->
 <section class="section" id="proyectos">
   <div class="section-eyebrow reveal">Proyectos</div>
   <div class="section-title reveal reveal-d1">Lo que ya construí</div>
   <div class="projects-grid">
 
-    <a href="https://aramburu-base-de-datos.vercel.app/" target="_blank" class="project-card reveal reveal-d1">
+    <a href="https://aramburu-base-de-datos.vercel.app/" target="_blank" class="project-card reveal reveal-d1" rel="noopener">
       <div class="project-banner">
-        <img src="img/aramburu.png" alt="Aramburu — Sistema de Gestión" class="project-banner-img" />
+        <img src="img/aramburu.png" alt="Aramburu — Sistema de Gestión" class="project-banner-img" loading="lazy" />
         <div class="project-banner-label">Destacado</div>
       </div>
       <div class="project-body">
@@ -114,9 +176,9 @@
       </div>
     </a>
 
-    <a href="https://agencia-app-khaki.vercel.app/pages/login.html" target="_blank" class="project-card reveal reveal-d2">
+    <a href="https://agencia-app-khaki.vercel.app/pages/login.html" target="_blank" class="project-card reveal reveal-d2" rel="noopener">
       <div class="project-banner">
-        <img src="img/agencia.png" alt="Agencia App — Gestión de Equipo" class="project-banner-img" />
+        <img src="img/agencia.png" alt="Agencia App — Gestión de Equipo" class="project-banner-img" loading="lazy" />
       </div>
       <div class="project-body">
         <h3>Agencia App — Gestión de Equipo</h3>
@@ -130,9 +192,9 @@
       </div>
     </a>
 
-    <a href="https://auto-clientes2.vercel.app/" target="_blank" class="project-card reveal reveal-d3">
+    <a href="https://auto-clientes2.vercel.app/" target="_blank" class="project-card reveal reveal-d3" rel="noopener">
       <div class="project-banner">
-        <img src="img/autoclientes.png" alt="AutoClientes — Buscador de Leads" class="project-banner-img" />
+        <img src="img/autoclientes.png" alt="AutoClientes — Buscador de Leads" class="project-banner-img" loading="lazy" />
       </div>
       <div class="project-body">
         <h3>AutoClientes — Buscador de Leads</h3>
@@ -146,9 +208,9 @@
       </div>
     </a>
 
-    <a href="https://mini-fletes.vercel.app/" target="_blank" class="project-card reveal reveal-d4">
+    <a href="https://mini-fletes.vercel.app/" target="_blank" class="project-card reveal reveal-d4" rel="noopener">
       <div class="project-banner">
-        <img src="img/camaras.png" alt="Cámaras de Seguridad — Web Completa" class="project-banner-img" />
+        <img src="img/camaras.png" alt="Cámaras de Seguridad — Web Completa" class="project-banner-img" loading="lazy" />
       </div>
       <div class="project-body">
         <h3>Cámaras de Seguridad — Web Completa</h3>
@@ -162,9 +224,9 @@
       </div>
     </a>
 
-    <a href="https://casa-de-motos-npbx.vercel.app/" target="_blank" class="project-card reveal reveal-d5">
+    <a href="https://casa-de-motos-npbx.vercel.app/" target="_blank" class="project-card reveal reveal-d5" rel="noopener">
       <div class="project-banner">
-        <img src="img/motos.png" alt="LV Motos — Web para Comercio" class="project-banner-img" />
+        <img src="img/motos.png" alt="LV Motos — Web para Comercio" class="project-banner-img" loading="lazy" />
       </div>
       <div class="project-body">
         <h3>LV Motos — Web para Comercio</h3>
@@ -178,9 +240,9 @@
       </div>
     </a>
 
-    <a href="https://ferreteria-argentina.vercel.app/" target="_blank" class="project-card reveal reveal-d6">
+    <a href="https://ferreteria-argentina.vercel.app/" target="_blank" class="project-card reveal reveal-d6" rel="noopener">
       <div class="project-banner">
-        <img src="img/ferreteria.png" alt="Ferretería Argentina — Web de Producto" class="project-banner-img" />
+        <img src="img/ferreteria.png" alt="Ferretería Argentina — Web de Producto" class="project-banner-img" loading="lazy" />
       </div>
       <div class="project-body">
         <h3>Ferretería Argentina — Web de Producto</h3>
@@ -197,9 +259,10 @@
   </div>
 </section>
 
-<hr />
+<!-- Gradient divider -->
+<div class="divider"></div>
 
-<!-- FORM -->
+<!-- ═══════════════ FORM ═══════════════ -->
 <div id="solicitar">
   <div class="form-inner">
     <div class="form-intro reveal">
@@ -207,9 +270,35 @@
       <div class="section-title">Contame qué necesitás</div>
       <p>No hace falta que tengas todo claro. Con una idea alcanza. Yo te hago las preguntas que faltan y te cuento qué se puede hacer y cuánto sale.</p>
       <div class="form-perks">
-        <div class="perk"><div class="perk-icon">✉️</div>Te respondo en menos de 24hs</div>
-        <div class="perk"><div class="perk-icon">💬</div>Primera consulta sin costo</div>
-        <div class="perk"><div class="perk-icon">🔒</div>Tus datos no se comparten con nadie</div>
+        <div class="perk">
+          <div class="perk-icon">
+            <!-- Mail icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
+          Te respondo en menos de 24hs
+        </div>
+        <div class="perk">
+          <div class="perk-icon">
+            <!-- Message circle icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+            </svg>
+          </div>
+          Primera consulta sin costo
+        </div>
+        <div class="perk">
+          <div class="perk-icon">
+            <!-- Lock icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0110 0v4"/>
+            </svg>
+          </div>
+          Tus datos no se comparten con nadie
+        </div>
       </div>
     </div>
     <div class="form-box reveal reveal-d2">
@@ -250,7 +339,12 @@
         <button class="submit-btn" id="submit-btn" onclick="handleSubmit()">Mandar consulta</button>
       </div>
       <div class="success-msg" id="success-msg">
-        <div class="check">✅</div>
+        <div class="check-icon">
+          <!-- Check icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
         <h3>¡Listo, lo recibí!</h3>
         <p>Gracias por escribirme. Te respondo a la brevedad para hablar de tu proyecto en detalle.</p>
       </div>
@@ -258,13 +352,12 @@
   </div>
 </div>
 
-<!-- FOOTER -->
-<div style="border-top: 1px solid var(--border)">
-  <footer>
-    <span>© 2026 NahuDev · Agus · Argentina 🇦🇷</span>
-    <a href="#">Política de privacidad</a>
-  </footer>
-</div>
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<div class="divider"></div>
+<footer>
+  <span>© 2026 NahuDev · Agus · Argentina</span>
+  <a href="#">Política de privacidad</a>
+</footer>
 
 <script src="index.js"></script>
 </body>

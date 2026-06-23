@@ -1,33 +1,102 @@
-// Scroll reveal
-const observer = new IntersectionObserver((entries) => {
+/* ══════════════════════════════════════════════
+   NahuDev Portfolio — Advanced Interactions
+   ══════════════════════════════════════════════ */
+
+// ── DARK MODE TOGGLE ──
+(function initTheme() {
+  const html = document.documentElement;
+  const toggle = document.querySelector('.theme-toggle');
+
+  // Restore saved preference
+  const saved = localStorage.getItem('nahudev-theme');
+  if (saved === 'dark') {
+    html.setAttribute('data-theme', 'dark');
+  }
+
+  // Toggle on click
+  if (toggle) {
+    toggle.addEventListener('click', () => {
+      const current = html.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('nahudev-theme', next);
+    });
+  }
+})();
+
+// ── SCROLL REVEAL with blur transition ──
+const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
+      revealObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.12 });
+}, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
 
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// Stat cards observer (slide from right)
+// ── STAT CARDS: slide + counter animation ──
+const statCards = document.querySelectorAll('.stat-card');
+
 const statObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
+      animateStatNumber(entry.target);
       statObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.2 });
+}, { threshold: 0.3 });
 
-document.querySelectorAll('.stat-card').forEach(el => statObserver.observe(el));
+statCards.forEach(el => statObserver.observe(el));
 
-// Chips
+/**
+ * Animates the stat number from 0 to the target value.
+ * Uses data-count and data-suffix from the card to preserve the <span> styling.
+ */
+function animateStatNumber(card) {
+  const numEl = card.querySelector('.stat-num');
+  if (!numEl) return;
+
+  const target = parseInt(card.dataset.count, 10);
+  const suffix = card.dataset.suffix || '';
+  if (isNaN(target)) return;
+  if (target === 0) return;
+
+  // Skip animation if user prefers reduced motion
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    numEl.innerHTML = target + '<span>' + suffix + '</span>';
+    return;
+  }
+
+  const duration = 1200;
+  const start = performance.now();
+
+  function tick(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    // Ease out cubic for natural deceleration
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = Math.round(eased * target);
+
+    // Preserve the <span> wrapper for accent color on suffix
+    numEl.innerHTML = current + '<span>' + suffix + '</span>';
+
+    if (progress < 1) {
+      requestAnimationFrame(tick);
+    }
+  }
+
+  requestAnimationFrame(tick);
+}
+
+// ── CHIPS ──
 document.querySelectorAll('#chips .chip').forEach(c =>
   c.addEventListener('click', () => c.classList.toggle('active'))
 );
 
-// Submit
+// ── SUBMIT ──
 function handleSubmit() {
   const nombre  = document.getElementById('nombre').value.trim();
   const tel     = document.getElementById('telefono').value.trim();
@@ -47,9 +116,110 @@ function handleSubmit() {
   btn.disabled = true;
   btn.textContent = 'Enviando...';
 
-  // Ac\u00e1 ir\u00eda el fetch al backend
+  // Aqu\u00ed ir\u00eda el fetch al backend
   setTimeout(() => {
     document.getElementById('form-content').style.display = 'none';
     document.getElementById('success-msg').style.display = 'block';
   }, 1000);
 }
+
+// ── PARALLAX EFFECT ON HERO (subtle) ──
+(function initParallax() {
+  // Skip if user prefers reduced motion
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const hero = document.querySelector('.hero');
+  const heroLeft = document.querySelector('.hero-left');
+  const heroRight = document.querySelector('.hero-right');
+
+  if (!hero || !heroLeft || !heroRight) return;
+
+  let ticking = false;
+
+  function updateParallax() {
+    const rect = hero.getBoundingClientRect();
+    const heroHeight = rect.height;
+    const heroTop = rect.top;
+
+    // Only apply when hero is partially visible
+    if (heroTop > window.innerHeight || heroTop < -heroHeight) {
+      ticking = false;
+      return;
+    }
+
+    // Map scroll position to a factor from 0 (top of hero at top of viewport) to 1 (bottom at bottom)
+    const factor = Math.max(0, Math.min(1, -heroTop / (heroHeight - window.innerHeight)));
+    // Subtle displacement: max 20px
+    const offset = factor * 20;
+
+    heroLeft.style.transform = `translateY(${offset * 0.3}px)`;
+    heroRight.style.transform = `translateY(${offset * 0.6}px)`;
+
+    ticking = false;
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      requestAnimationFrame(updateParallax);
+      ticking = true;
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+
+// ── MAGNETIC BUTTONS ──
+(function initMagnetic() {
+  const buttons = document.querySelectorAll('.btn-primary, .nav-cta');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+
+      // Max 6px pull
+      const strength = 0.25;
+      const tx = x * strength;
+      const ty = y * strength;
+
+      btn.style.transition = 'transform 0.15s ease-out';
+      btn.style.transform = `translate(${tx}px, ${ty}px)`;
+    });
+
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transition = 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+      btn.style.transform = 'translate(0, 0)';
+    });
+  });
+})();
+
+// ── RIPPLE EFFECT ON BUTTONS ──
+(function initRipple() {
+  const buttons = document.querySelectorAll('.btn-primary, .submit-btn, .nav-cta');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      // Remove any existing ripples
+      const existing = btn.querySelectorAll('.ripple');
+      existing.forEach(r => r.remove());
+
+      const ripple = document.createElement('span');
+      ripple.className = 'ripple';
+
+      const rect = btn.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height) * 2;
+      const x = e.clientX - rect.left - size / 2;
+      const y = e.clientY - rect.top - size / 2;
+
+      ripple.style.width = ripple.style.height = size + 'px';
+      ripple.style.left = x + 'px';
+      ripple.style.top = y + 'px';
+
+      btn.appendChild(ripple);
+
+      // Cleanup after animation
+      ripple.addEventListener('animationend', () => ripple.remove());
+    });
+  });
+})();
