@@ -255,91 +255,159 @@
 <!-- Gradient divider -->
 <div class="divider"></div>
 
-<!-- ═══════════════ FORM ═══════════════ -->
+<!-- ═══════════════ WIZARD FORM ═══════════════ -->
 <div id="solicitar">
-  <div class="form-inner">
-    <div class="form-intro reveal">
+  <div class="wizard-container reveal">
+    <div class="wizard-header">
       <div class="section-eyebrow">Contacto</div>
       <div class="section-title">Contame qué necesitás</div>
-      <p>No hace falta que tengas todo claro. Con una idea alcanza. Yo te hago las preguntas que faltan y te cuento qué se puede hacer y cuánto sale.</p>
-      <div class="form-perks">
-        <div class="perk">
-          <div class="perk-icon">
-            <!-- Mail icon -->
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-              <polyline points="22,6 12,13 2,6"/>
-            </svg>
-          </div>
-          Te respondo en menos de 24hs
-        </div>
-        <div class="perk">
-          <div class="perk-icon">
-            <!-- Message circle icon -->
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
-            </svg>
-          </div>
-          Primera consulta sin costo
-        </div>
-        <div class="perk">
-          <div class="perk-icon">
-            <!-- Lock icon -->
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-              <path d="M7 11V7a5 5 0 0110 0v4"/>
-            </svg>
-          </div>
-          Tus datos no se comparten con nadie
-        </div>
+      <div class="wizard-progress">
+        <div class="wizard-progress-bar" id="wizard-progress"></div>
       </div>
+      <div class="wizard-step-indicator">Paso <span id="current-step">1</span> de 3</div>
     </div>
-    <div class="form-box reveal reveal-d2">
-      <div id="form-content">
-        <div class="field">
-          <label>Nombre y apellido</label>
-          <input type="text" id="nombre" placeholder="Juan Pérez" />
-        </div>
-        <div class="field">
-          <label>Teléfono</label>
-          <input type="tel" id="telefono" placeholder="+54 9 11 1234-5678" />
-        </div>
-        <div class="field">
-          <label>Email</label>
-          <input type="email" id="email" placeholder="juan@ejemplo.com" />
-        </div>
-        <div class="field">
-          <label>¿Qué te interesa? <span style="font-weight:400;text-transform:none;letter-spacing:0">(opcional)</span></label>
-          <div class="chips" id="chips">
-            <div class="chip" data-value="web">Sitio web</div>
-            <div class="chip" data-value="landing">Landing page</div>
-            <div class="chip" data-value="chatbot">Chatbot</div>
-            <div class="chip" data-value="automatizacion">Automatización</div>
-            <div class="chip" data-value="dashboard">Dashboard</div>
-            <div class="chip" data-value="reservas">Turnos online</div>
-            <div class="chip" data-value="seo">SEO / Google</div>
-            <div class="chip" data-value="nosé">No sé todavía</div>
+
+    <div class="wizard-body">
+      <!-- PASO 1: Servicio -->
+      <div class="wizard-step active" data-step="1">
+        <h3 class="wizard-step-title">¿Qué servicio te interesa?</h3>
+        <p class="wizard-step-sub">Elegí el que más se acerque a lo que tenés en mente.</p>
+        <div class="wizard-options" id="wizard-service">
+          <div class="wizard-option" data-value="web">
+            <div class="wizard-option-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+              </svg>
+            </div>
+            <div class="wizard-option-text">
+              <strong>Sitio web</strong>
+              <span>Página profesional para tu negocio</span>
+            </div>
+          </div>
+          <div class="wizard-option" data-value="chatbot">
+            <div class="wizard-option-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="3"/>
+                <circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/>
+                <path d="M9 16h6M12 3v-1"/>
+              </svg>
+            </div>
+            <div class="wizard-option-text">
+              <strong>Chatbot</strong>
+              <span>Atención automática 24/7</span>
+            </div>
+          </div>
+          <div class="wizard-option" data-value="automatizacion">
+            <div class="wizard-option-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/>
+              </svg>
+            </div>
+            <div class="wizard-option-text">
+              <strong>Automatización</strong>
+              <span>Eliminar tareas repetitivas</span>
+            </div>
+          </div>
+          <div class="wizard-option" data-value="otro">
+            <div class="wizard-option-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 16v-4M12 8h.01"/>
+              </svg>
+            </div>
+            <div class="wizard-option-text">
+              <strong>Otro / No sé</strong>
+              <span>Contame tu idea y vemos</span>
+            </div>
           </div>
         </div>
-        <div class="field" style="margin-top:16px">
-          <label>Algo más que quieras contarme <span style="font-weight:400;text-transform:none;letter-spacing:0">(opcional)</span></label>
-          <textarea id="mensaje" placeholder="Cualquier detalle ayuda. ¿Qué hace tu negocio? ¿Qué problema tenés?"></textarea>
+        <div class="wizard-nav">
+          <button class="btn-primary wizard-next" onclick="wizardNext()">Continuar →</button>
         </div>
-        <div class="consent">
-          <input type="checkbox" id="consent" />
-          <span>Acepto que mis datos se guarden para recibir una respuesta. <a href="#">Política de privacidad</a>.</span>
-        </div>
-        <button class="submit-btn" id="submit-btn" onclick="handleSubmit()">Mandar consulta</button>
       </div>
-      <div class="success-msg" id="success-msg">
-        <div class="check-icon">
-          <!-- Check icon -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="20 6 9 17 4 12"/>
-          </svg>
+
+      <!-- PASO 2: Detalles -->
+      <div class="wizard-step" data-step="2">
+        <h3 class="wizard-step-title">Contame un poco más</h3>
+        <p class="wizard-step-sub">Esto me ayuda a entender mejor tu proyecto.</p>
+        <div class="wizard-fields">
+          <div class="field">
+            <label>¿A qué se dedica tu negocio?</label>
+            <input type="text" id="wizard-rubro" placeholder="Ej: clínica dental, inmobiliaria, gym..." />
+          </div>
+          <div class="field">
+            <label>¿Tenés presupuesto estimado?</label>
+            <select id="wizard-budget">
+              <option value="">Seleccioná un rango</option>
+              <option value="50-100k">$50.000 - $100.000</option>
+              <option value="100-200k">$100.000 - $200.000</option>
+              <option value="200-500k">$200.000 - $500.000</option>
+              <option value="500k+">$500.000+</option>
+              <option value="no-se">No tengo idea</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>¿Con qué urgencia lo necesitás?</label>
+            <select id="wizard-urgency">
+              <option value="">Seleccioná urgencia</option>
+              <option value="flexible">Sin apuro, cuando pueda</option>
+              <option value="1mes">En el próximo mes</option>
+              <option value="2semanas">En 2 semanas</option>
+              <option value="ya">Lo antes posible</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Algo más que quieras contarme <span style="font-weight:400;text-transform:none;letter-spacing:0">(opcional)</span></label>
+            <textarea id="wizard-detalle" placeholder="Ideas, referencias, problemas actuales..."></textarea>
+          </div>
         </div>
-        <h3>¡Listo, lo recibí!</h3>
-        <p>Gracias por escribirme. Te respondo a la brevedad para hablar de tu proyecto en detalle.</p>
+        <div class="wizard-nav">
+          <button class="btn-ghost wizard-back" onclick="wizardBack()">← Atrás</button>
+          <button class="btn-primary wizard-next" onclick="wizardNext()">Continuar →</button>
+        </div>
+      </div>
+
+      <!-- PASO 3: Contacto -->
+      <div class="wizard-step" data-step="3">
+        <h3 class="wizard-step-title">¿Cómo te contacto?</h3>
+        <p class="wizard-step-sub">Te respondo en menos de 24hs.</p>
+        <div class="wizard-fields">
+          <div class="field">
+            <label>Nombre y apellido</label>
+            <input type="text" id="wizard-nombre" placeholder="Juan Pérez" />
+          </div>
+          <div class="field">
+            <label>Teléfono (WhatsApp si tenés)</label>
+            <input type="tel" id="wizard-telefono" placeholder="+54 9 11 1234-5678" />
+          </div>
+          <div class="field">
+            <label>Email</label>
+            <input type="email" id="wizard-email" placeholder="juan@ejemplo.com" />
+          </div>
+          <div class="consent">
+            <input type="checkbox" id="wizard-consent" />
+            <span>Acepto que mis datos se guarden para recibir una respuesta. <a href="#">Política de privacidad</a>.</span>
+          </div>
+        </div>
+        <div class="wizard-nav">
+          <button class="btn-ghost wizard-back" onclick="wizardBack()">← Atrás</button>
+          <button class="btn-primary wizard-submit" id="wizard-submit-btn" onclick="wizardSubmit()">Enviar consulta ✓</button>
+        </div>
+      </div>
+
+      <!-- SUCCESS -->
+      <div class="wizard-step wizard-success" data-step="success">
+        <div class="success-msg" style="display:block">
+          <div class="check-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <h3>¡Listo, lo recibí!</h3>
+          <p>Gracias por escribirme. Te respondo a la brevedad para hablar de tu proyecto en detalle.</p>
+        </div>
       </div>
     </div>
   </div>

@@ -312,3 +312,142 @@ function handleSubmit() {
     }
   });
 })();
+
+// ── WIZARD FORM ──
+(function initWizard() {
+  let currentStep = 1;
+  const totalSteps = 3;
+  const wizardData = {
+    service: '',
+    rubro: '',
+    budget: '',
+    urgency: '',
+    detalle: '',
+    nombre: '',
+    telefono: '',
+    email: ''
+  };
+
+  // Handle option selection in step 1
+  const options = document.querySelectorAll('.wizard-option');
+  options.forEach(option => {
+    option.addEventListener('click', () => {
+      options.forEach(opt => opt.classList.remove('selected'));
+      option.classList.add('selected');
+      wizardData.service = option.dataset.value;
+    });
+  });
+
+  // Update progress bar and step indicator
+  function updateProgress() {
+    const progress = (currentStep / totalSteps) * 100;
+    const progressBar = document.getElementById('wizard-progress');
+    const stepIndicator = document.getElementById('current-step');
+    
+    if (progressBar) progressBar.style.width = progress + '%';
+    if (stepIndicator) stepIndicator.textContent = currentStep;
+  }
+
+  // Show specific step
+  function showStep(step) {
+    const steps = document.querySelectorAll('.wizard-step');
+    steps.forEach(s => s.classList.remove('active'));
+    
+    const targetStep = document.querySelector(`.wizard-step[data-step="${step}"]`);
+    if (targetStep) targetStep.classList.add('active');
+  }
+
+  // Validate current step
+  function validateStep(step) {
+    if (step === 1) {
+      if (!wizardData.service) {
+        alert('Por favor seleccioná un servicio');
+        return false;
+      }
+    } else if (step === 2) {
+      wizardData.rubro = document.getElementById('wizard-rubro').value.trim();
+      wizardData.budget = document.getElementById('wizard-budget').value;
+      wizardData.urgency = document.getElementById('wizard-urgency').value;
+      wizardData.detalle = document.getElementById('wizard-detalle').value.trim();
+      
+      if (!wizardData.rubro) {
+        alert('Por favor contame a qué se dedica tu negocio');
+        return false;
+      }
+    } else if (step === 3) {
+      wizardData.nombre = document.getElementById('wizard-nombre').value.trim();
+      wizardData.telefono = document.getElementById('wizard-telefono').value.trim();
+      wizardData.email = document.getElementById('wizard-email').value.trim();
+      
+      const consent = document.getElementById('wizard-consent').checked;
+      
+      if (!wizardData.nombre || !wizardData.telefono || !wizardData.email) {
+        alert('Por favor completá todos los campos de contacto');
+        return false;
+      }
+      
+      if (!consent) {
+        alert('Necesito tu consentimiento para guardar los datos');
+        return false;
+      }
+    }
+    return true;
+  }
+
+  // Make functions global
+  window.wizardNext = function() {
+    if (!validateStep(currentStep)) return;
+    
+    if (currentStep < totalSteps) {
+      currentStep++;
+      showStep(currentStep);
+      updateProgress();
+    }
+  };
+
+  window.wizardBack = function() {
+    if (currentStep > 1) {
+      currentStep--;
+      showStep(currentStep);
+      updateProgress();
+    }
+  };
+
+  window.wizardSubmit = async function() {
+    if (!validateStep(3)) return;
+    
+    const submitBtn = document.getElementById('wizard-submit-btn');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando...';
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(wizardData)
+      });
+
+      if (response.ok) {
+        // Show success step
+        const steps = document.querySelectorAll('.wizard-step');
+        steps.forEach(s => s.classList.remove('active'));
+        document.querySelector('.wizard-step[data-step="success"]').classList.add('active');
+        
+        // Update progress to 100%
+        const progressBar = document.getElementById('wizard-progress');
+        if (progressBar) progressBar.style.width = '100%';
+      } else {
+        alert('Hubo un error al enviar. Por favor intentá de nuevo.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar consulta ✓';
+      }
+    } catch (error) {
+      alert('Hubo un error al enviar. Por favor intentá de nuevo.');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Enviar consulta ✓';
+    }
+  };
+
+  // Initialize
+  updateProgress();
+})();
