@@ -61,6 +61,7 @@ body {
   font-family: 'Inter', sans-serif;
   font-size: 16px;
   line-height: 1.6;
+  overflow-x: hidden;
   transition: background var(--ease-smooth), color var(--ease-smooth);
   /* Subtle decorative background pattern */
   background-image:
