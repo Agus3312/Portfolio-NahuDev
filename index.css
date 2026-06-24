@@ -756,10 +756,23 @@ footer a { color: var(--accent); text-decoration: none; }
     gap: 40px; padding: 60px 20px;
   }
 
-  .section { padding: 60px 20px; }
+  .section { padding: 40px 16px; }
 
   .projects-grid {
     grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .services-grid {
+    gap: 10px;
+  }
+
+  .svc {
+    padding: 20px;
+  }
+
+  .project-card {
+    margin-bottom: 0;
   }
 
   footer {
