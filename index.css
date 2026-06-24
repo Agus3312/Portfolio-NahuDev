@@ -55,6 +55,10 @@
 
 html { scroll-behavior: smooth; }
 
+html {
+  overflow-x: clip;
+}
+
 body {
   background: var(--bg);
   color: var(--ink);
